@@ -4,28 +4,27 @@ honebu
 骨部
 
 - 10/9
- - introduction
 - 10/16
- - Parse.com * Backbone.js
+ - introduction
 - 10/23
- - M + Collection
+ - Parse.com * Backbone.js
 - 10/30
- - Collection + underscore.js
+ - M + Collection
 - 11/6
+ - Collection + underscore.js
+- 11/ 13
  - REST + sync
  - storage系のplugin
-- 11/ 13
- - View
 - 11/20
+ - View
+- 11/27
  - router
  - single page application
-- 11/27
- - bower/yeoman
 - 12/4
- - Marionette
+ - bower/yeoman
 - 12/11
- - Mocha + Chai
+ - Marionette
 - 12/18
- - generator-marionetteを使ってtodoアプリ作成
+ - Mocha + Chai
 - 12/25
- - closing
+ - generator-marionetteを使ってtodoアプリ作成
