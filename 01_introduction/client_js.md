@@ -77,7 +77,7 @@ MVPに分類される。
 
 ## 事例
 
-事例がとにかく多いのが特徴。
+事例がとにかく多いのが特徴。しかも、有名なサービスばかり。
 
 - foursquare
 - Airbnb
@@ -85,6 +85,7 @@ MVPに分類される。
 - Groupon Now
 - Hulu
 - Pinterest
+- SoundCloud
 
 大体、最近出てきたサービスは、殆どBackbone。
 
@@ -105,6 +106,21 @@ MVPに分類される。
 
 結論、ソースが整理される。
 =>保守しやすい。次、追加改修し易い。
+
+## ちなみに、これからどうなる？
+
+誰にも分からないが、最近、angularの勢いが激しい。
+
+- 昔：Backboneと有象無象のFW
+- 今：Backboneとangularと有象無象...
+
+angularはpolymerと統合される可能性があるので、
+
+webcomponentの普及と同時にangular勢の時代が来るかもしれない。
+
+これは、だれにも分からないが、とりあえず、今分かる範囲ではBackboneで大丈夫。
+
+※事例の数や情報量は圧倒的にBackboneが多い。
 
 # これから
 
