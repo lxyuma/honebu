@@ -22,6 +22,7 @@ honebu
  - single page application
 - 12/4
  - bower/yeoman
+ - grunt.js
 - 12/11
  - Marionette
 - 12/18
