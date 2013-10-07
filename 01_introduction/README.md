@@ -23,10 +23,12 @@ wiki or slide。
 
 以下、２つがメイン。
 
+１つ目をメインに呼んで、二つ目は逆引き用。
+
 - オライリー
  - http://addyosmani.github.io/backbone-fundamentals
 
-- 公式p
+- 公式pageのdocument
  - http://backbonejs.org/
 
 それ以外、各テーマ毎の文献は、その前の回で紹介していきます。

@@ -33,7 +33,7 @@ Controllerが中心.
 
 jsのMVCも、今のサーバー側のものより、smalltalk自体のMVCに近い。
 
-諸説あるが、今のjs系は大きく分けると、MVPと、MVVMに分かれる。
+諸説あるが、今のjs系FWは大きく分けると、MVPと、MVVMに分かれる。
 
 ## MVP
 
@@ -74,6 +74,23 @@ Ashが開発(underscore.jsやcoffeescriptの作者)
 MVPに分類される。
 
 図。
+
+## 事例
+
+事例がとにかく多いのが特徴。
+
+- foursquare
+- Airbnb
+- LinkedIn
+- Groupon Now
+- Hulu
+- Pinterest
+
+大体、最近出てきたサービスは、殆どBackbone。
+
+- おまけ
+ - jsの動きが多くてwebアプリっぽくない感じがしたら、consoleでBackboneと入れてみよう
+ - functionが返ってきたらそれは、Backboneを使ってる。
 
 ## backboneはなぜ流行ったか？
 
