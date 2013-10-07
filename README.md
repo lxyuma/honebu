@@ -24,6 +24,8 @@ honebu
 - 12/4
  - Marionette
 - 12/11
- - Marionette generatorでtodo
+ - Mocha + Chai
 - 12/18
+ - generator-marionetteを使ってtodoアプリ作成
+- 12/25
  - closing
