@@ -21,25 +21,82 @@ javascript MVC(MV*) framework等と呼ばれるようになった。
 
 # MVCとは
 
-- Model : 
-- View:
-- Controller:
+ここからMVCの経緯を振り返る。
 
-普段、サーバー側で書いているMVCは、model2と呼ばれる物。
+## なぜMVCの知識が必要か？
 
-Controllerが中心.
+その前に、なぜこんな事を知る必要があるのか？
 
-本来は、smalltalk時代に出来たもので、Viewが中心に動く。
+Backbone自体、厳密にMV*を定義していない。
 
-jsのMVCも、今のサーバー側のものより、smalltalk自体のMVCに近い。
+今、自分が書いているのがどれなのか？処理をどこに委譲すべきか？考えないといけない。MV*の知識はこれらの判断材料になる。
 
-諸説あるが、今のjs系FWは大きく分けると、MVPと、MVVMに分かれる。
+逆に知らないと、新しいスパゲティが出来る。
+
+
+## UIの登場
+
+70年代にGUIが登場。
+
+プレゼンテーション層とドメインロジック層が出来た。
+
+
+## MVC in smalltalk80
+
+- View
+    - UIの受け口
+    - Controllerを呼び出す
+- Controller
+    - Modelを操作
+- Model
+    - EventをFire!
+
+## serverside MVC(model2)
+
+- Controller
+    - requestの受け取り
+    - responseをHTTPとして返す
+    - Modelを操作
+    ーViewにdataを渡して描写
+
+- 普段サーバー側FWで書いているのが、これ。
 
 ## MVP
 
-Viewが中心に動く
+- 2つの特徴
+    - passive view: viewは素朴に。表示やロジックはPに
+    - 監督者としてのController:主にViewがロジックも内包。難しい時にPresenterが処理を引き継ぐ
 
-MVVMは、データバインディングがある。
+- View
+    - UIの受け口
+    - Presenterを呼び出す
+- Presenter
+    - Modelを操作
+    - Viewを更新
+- Model
+    - PresenterをFire!
+
+## MVVM
+
+- MVPとほぼ同じ(PresenterがViewModel)
+    - 違い：ViewModelの変化がデータバインディングによりViewに繁栄
+
+## jsのMV*
+
+jsのMVCも、今のサーバー側のもの(model2)より、smalltalk自体のMVCに近い。
+
+諸説あるが、今のjs系FWは大きく分けると、その多くがMVPと、MVVMに分かれる。(例外ある。また、人によって捉え方も異なる)
+
+BackboneはMVP。(人に寄っては元のMVCという人もいれば、MV*と言う人もいる)
+
+
+# jsのMV*とサーバー側のMV*
+
+- よくある勘違い：jsのMV* frameworkあるから、サーバー側のMVC要らない？
+
+    - NO
+    - 勿論、必要。いつも通りサーバー側も実装。
+    - 今迄サーバー側のMVCでまかなっていて、Vが膨らんだので、これを分解してclient側でMVCで整理しようというのが、Backbone
 
 ## 参考
 
@@ -54,9 +111,18 @@ MVVMは、データバインディングがある。
 # many FW
 
 - 人気の分布
- - http://caliper.io/blog/2013/Javascript-Framework-Popularity/
+    - http://caliper.io/blog/2013/Javascript-Framework-Popularity/
+    - http://www.google.co.jp/trends/explore?q=Backbone.js#q=Backbone.js%2C%20Angular.js%2C%20Spine.js%2C%20Ember.js%2C%20Ext%20JS&cmpt=q
 
 沢山、frameworkがある。
+
+特に、GoogleTrendsに注目。大体、そんな感じ。
+
+- senchaのExtJsは、昔からUIを売ってて、途中からMVCを付けた(2011年4月)それ以前のデータはあまり関係がない。勢いは衰えてる。
+- Backboneが、ここ、2,3年のトレンド
+- Angularが去年からすごい勢いで上昇中。
+- Ember.jsもそこそこ人気
+- Spine.jsはもう？knockout.jsも低い状況。
 
 # いつ、必要になるか？
 
@@ -67,13 +133,14 @@ MVVMは、データバインディングがある。
 とされるが、
 Backboneの場合、非常に軽量で融通が利くので、普通のWebアプリから適用してOK
 
+むしろ、普通のアプリで書くと、js整理されて、かなりメンテし易くなる。
+
 # Backboneとは
 
-Ashが開発(underscore.jsやcoffeescriptの作者)
+Jeremy Ashkenas(@jashkenas)が開発(underscore.jsやcoffeescriptの作者)
 
 MVPに分類される。
 
-図。
 
 ## 事例
 
@@ -100,9 +167,10 @@ MVPに分類される。
 普通のwebアプリでも使える。
 
 ## 普通にjquery使って書くのと比べてどうなる？
-(普通のwebアプリ)
-- Eventの口が整理される。
-- リソース系の処理と画面描写の処理が分かれる
+
+- (普通のwebアプリ)
+    - Eventの口が整理される。
+    - リソース系の処理と画面描写の処理が分かれる
 
 結論、ソースが整理される。
 =>保守しやすい。次、追加改修し易い。
@@ -124,9 +192,9 @@ webcomponentの普及と同時にangular勢の時代が来るかもしれない�
 
 # これから
 
-周辺技術もふまえながら、Backboneの勉強する。
+以下の周辺技術もふまえながら、Backboneの勉強する。
 
-- Parse:BaaSのパイオニア。facebookに買収され非常に未来のあるクラウドサービス。事例も多い。
+- Parse:BaaSのパイオニア。facebookに買収され非常に未来のあるクラウドサービス。事例も多い。ちなみに、最近日本でもBaaS熱くなってきた。
 - underscore.js:Backboneが依存してるライブラリ。最近、関数型プログラミングの文脈で注目。
 - bower/yeoman: client側/server側のライブラリ管理。
 - grunt.js:task runner。
