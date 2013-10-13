@@ -31,7 +31,7 @@ wiki or slide。
 - 公式pageのdocument
  - http://backbonejs.org/
 
-それ以外、各テーマ毎の文献は、その前の回で紹介していきます。
+それ以外、各テーマ毎の文献は、その回で紹介していきます。
 
 ※ので、簡単に目を通しておくと良いですが、MUSTではありません。
 
@@ -39,3 +39,4 @@ wiki or slide。
 
 簡単にjs周辺のMV*を確認します。
 
+- https://github.com/lxyuma/honebu/blob/master/01_introduction/client_js.md
