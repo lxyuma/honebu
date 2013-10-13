@@ -13,6 +13,7 @@ honebu
 - 11/6
  - Collection + underscore.js
 - 11/ 13
+ - jqueryのajax
  - REST + sync
  - storage系のplugin
 - 11/20
