@@ -169,8 +169,11 @@ MVPに分類される。
 ## 普通にjquery使って書くのと比べてどうなる？
 
 - (普通のwebアプリ)
-    - Eventの口が整理される。
     - リソース系の処理と画面描写の処理が分かれる
+    - View構成要素毎に処理が分かれて分かりやすくなって
+    - イベントの動きが分かり易い(Events見れば分かる
+    - 画面描写何やってるかもパッと見で理解できる(template + render())
+
 
 結論、ソースが整理される。
 =>保守しやすい。次、追加改修し易い。
@@ -196,7 +199,7 @@ webcomponentの普及と同時にangular勢の時代が来るかもしれない�
 
 - Parse:BaaSのパイオニア。facebookに買収され非常に未来のあるクラウドサービス。事例も多い。ちなみに、最近日本でもBaaS熱くなってきた。
 - underscore.js:Backboneが依存してるライブラリ。最近、関数型プログラミングの文脈で注目。
-- bower/yeoman: client側/server側のライブラリ管理。
+- bower/yeoman: client側のライブラリ管理/generator
 - grunt.js:task runner。
 - mocha + chai:最近、勢い出てきたtest framework
 - marionette.js:backbone上のframework。非常に効率よくbackboneアプリを作れる。
