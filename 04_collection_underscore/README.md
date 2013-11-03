@@ -20,15 +20,15 @@ Backboneと同じように、Jeremy Ashkenasさんが作ったjavascriptのラ�
 そもそも、関数型とは何でしょうか？
 今日は、この話をしてから、underscore.jsに戻ってこようと思います。
 
-## 関数型プログラミング
+# 関数型プログラミング
 
-## underscoreのソースを解析する
+# underscoreのソースを解析する
 
 - 関数型の良いお手本
 
 http://underscorejs.org/docs/underscore.html
 
-## components
+# components
 
 - Collection(Array or Objects)
 - Arrays
@@ -37,66 +37,179 @@ http://underscorejs.org/docs/underscore.html
 - utility
 - Chaining
 
+ライブラリなので、基本逆引きで覚えていけば良いのですが、
+
 よく使うものだけ、簡単に見て行きましょう。
 
-## Collection
+# 基本的な書き方
+
+underscoreは"_."を使う。
 
 - each
 
+eachが基本。ループ文。
+
+```
+_.each(配列, iterator関数)
+
+```
+
+- iterator関数の引数
+  1. 要素
+  1. index
+  1. 元の配列
+
+
+```
+languages = ["ruby", "javascript", "node.js"];
+
+_.each(languages, function(element, index, list) {
+  console.log(index + ":" + element + " < in " + list + ">");
+});
+```
+
+元々ある関数を使う事もできる
+
+```
+_.each([1, 2, 3], alert);
+//=> alerts each number in turn...
+```
+
+このalertを自分の関数にしても良い。(=関数型っぽくなってきた)
+
+# Collection(Object & Array)
+
+以下、公式pageより。
+
 - map
+
+全ての配列に同じ操作をする。
+
+```
+_.map([1, 2, 3], function(num){ return num * 3; });
+// => [3, 6, 9]
+```
 
 - reduce
 
-- find
+合計値を作る
 
-- contains
+```
+var sum = _.reduce([1, 2, 3], function(memo, num){ return memo + num; }, 0);
+// => 6
+```
 
-## Arrays
+- filter
 
-- first
+条件に合う値のみを取得する
 
-- rest
+```
+var evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+// => [2, 4, 6]
+```
 
-- compace
 
-- zip
-
-- range
-
-## Functions
+# Functions
 
 - bind
 
+関数にobjectをbindする。
+
+```
+_.bind(関数, bindしたいobject, 関数に与える引数)
+```
+
+関数内では、thisが、bindしたいobjectになる。
+
+このbindしたいonjectにthisそのものを指定する事がよくある。
+
+```
+var func = function(greeting){ return greeting + ': ' + this.name };
+func = _.bind(func, {name: 'moe'}, 'hi');
+func();
+// => 'hi: moe'
+```
+
 - bindAll
 
-- once
+複数のメソッドにobjectをbindする。
 
-## Objects
+```
+_.bindAll(object, *methodNames)
+```
 
-- keys
+第２引数は可長変。複数のメソッドを指定できる。
 
-- values
+bindの複数版。こっちの方がよく見る。
 
-- pairs
+```
+var buttonView = {
+  label  : 'underscore',
+  onClick: function(){ alert('clicked: ' + this.label); },
+  onHover: function(){ console.log('hovering: ' + this.label); }
+};
+
+_.bindAll(buttonView, 'onClick', 'onHover');
+
+// When the button is clicked, this.label will have the correct value.
+
+jQuery('#underscore_button').bind('click', buttonView.onClick);
+```
+
+Backboneでよくinitialize内でmodel/collectionとbindしたeventとthisを結ぶために使う。
+
+
+# Objects
 
 - extend
 
-- defaults
+プロパティのコピー。
 
-- clone
+```
+_.extend(destination, *sources)
+```
 
-## Utility
+オブジェクトxにオブジェクトyの値を入れる。
 
-- random
+```
+x = {a: "1", b: "2"};
+y = {b: "3", c: "4"};
+z = _.extend(x, y);
 
-- mixin
+console.log(z)
+// Object {a: "1", b: "3", c: "4"}
+```
 
-- template
+まあ、予想通りの結果ですが、この時、元のx,yを見てみると、
 
-## Chaining
+```
+console.log(x)
+// Object {a: "1", b: "3", c: "4"}
 
-- chain
+console.log(y)
+// Object {b: "3", c: "4"}
+```
 
-- value
+xも変わってるので注意。
+
+(extendはxのshallow copyに対して操作している)
+
+# Backbone * underscore.js
+
+Backboneの中でunderscoreめっちゃ使われてる
+
+- classのextendや、cid等基本的な機能
+- Modelでunderscoreから委譲
+- Collectionでunderscoreから委譲
+
+特にCollectionでunderscoreから委譲されたメソッドを非常によく使う。
+
+関数型っぽい記述が活かせるのも、Collection周りの処理。
+
+# 実際のFP in js(Backbone)
+
+やや複雑なロジックになった時に思い出そう。
+
+
 
 
