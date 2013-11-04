@@ -14,6 +14,9 @@
 - Collection
     - url
 
+なぜ、Modelはurlでは無いのか？ソースを読んでみませう。
+
+
 ## crudを再確認
 
 ### Model
