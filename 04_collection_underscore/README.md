@@ -22,6 +22,8 @@ Backboneと同じように、Jeremy Ashkenasさんが作ったjavascriptのラ�
 
 # 関数型プログラミング
 
+https://docs.google.com/presentation/d/1KTQAH-OK8NDTWtYA6kvNXGF2jmTywD_mhXixN1hXz88/edit?usp=sharing
+
 # underscoreのソースを解析する
 
 - 関数型の良いお手本
@@ -204,12 +206,19 @@ Backboneの中でunderscoreめっちゃ使われてる
 
 特にCollectionでunderscoreから委譲されたメソッドを非常によく使う。
 
+```
+ex)
+collection.each(function (item) { ... })
+```
+
 関数型っぽい記述が活かせるのも、Collection周りの処理。
 
 # 実際のFP in js(Backbone)
 
 やや複雑なロジックになった時に思い出そう。
 
+なんか例示する予定だったけど、間に合わなかったので、誰かのブログを。
 
+http://victorsavkin.com/post/63551894251/functional-refactoring-in-javascript
 
 
