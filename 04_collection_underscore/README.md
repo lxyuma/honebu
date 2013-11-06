@@ -215,10 +215,71 @@ collection.each(function (item) { ... })
 
 # 実際のFP in js(Backbone)
 
-やや複雑なロジックになった時に思い出そう。
-
-なんか例示する予定だったけど、間に合わなかったので、誰かのブログを。
+Collection等、配列周りの操作で、 やや複雑なロジックになった時に思い出そう。
 
 http://victorsavkin.com/post/63551894251/functional-refactoring-in-javascript
+
+## sample
+
+とあるviewのpaging
+
+```
+  @nextIndex: (choosingIndex, length) ->
+    _chooseIndex(choosingIndex, true, length)
+
+  @beforeIndex: (choosingIndex, length) ->
+    _chooseIndex(choosingIndex, false, length)
+
+  _chooseIndex = (choosingIndex, isToNextPage, length) ->
+    choosingIndex = choosingIndex ? 0
+    if isToNextPage
+      choosingIndex += 1
+      if length == choosingIndex
+        choosingIndex = 0
+    else # before
+      choosingIndex -= 1
+      if choosingIndex < 0
+        choosingIndex = length - 1
+```
+
+一見、悪く無さそうだが、
+
+- choosingIndexを再代入してる。
+- 加えて、chooseIndexが分かりづらいかも。
+    - isToNextPageがtrue/falseというのも、とても独自で分かりづらい。
+- ちなみに、副作用は無い、参照透過性も高い
+
+これを、関数型っぽく書き直すと、
+
+```
+  @nextIndex: (choosingIndex, length) ->
+    _.compose(_circulateIndex(length), _stepIndex)(choosingIndex, ((i) -> i+1))
+
+  @beforeIndex: (choosingIndex, length) ->
+    _.compose(_circulateIndex(length), _stepIndex)(choosingIndex, ((i) -> i-1))
+
+  _stepIndex = (choosingIndex=0, stepFunction) ->
+    return stepFunction(choosingIndex)
+
+  _circulateIndex = (maxLength) ->
+    return (steppedIndex) ->
+      return 0 if steppedIndex == maxLength
+      return maxLength - 1 if steppedIndex < 0
+      return steppedIndex
+```
+
+※補足：underscoreに慣れる必要があるのだが、 _.compose(f, g)(引数)は、f(g(引数))の事。
+
+※nextIndexとbeforeIndexの記述も+/-以外一緒なので、もう１つ関数を作って共通部分と非共通部分で分けても良いかも
+
+- 慣例
+    - 基本的に関数を繋げて行く(pipeline)
+    - 変数は再代入しない。(変更もできない)
+    - 番外編）circulateIndex(length)は部分適用。この時、circulateIndexが一つずつの引数毎の関数になってる=curry化
+        - これは今日扱わなかったので、特に気にしないで結構です。
+- 効果
+    - 1階層目で、今までその先の関数でやっていたような処理がある程度見える状態になった。(iに+1してるのか-1なのか？）
+        - よくあるのが、ループ内の条件が呼び出し側に記載できるので、階層がそこまで深くならない。
+    - やってる要素毎に関数を切り離して、それぞれの関数の役割がはっきりした。
 
 
