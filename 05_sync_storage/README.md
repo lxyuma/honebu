@@ -1,41 +1,6 @@
-# jQueryのajax
 
-- jscafeの資料
+今日は、Backbone.syncとBackbone.Routerを扱います。
 
-# sync
-
-- jscafeの資料
-
-## urlの確認
-
-- Model
-    - urlRoot
-
-- Collection
-    - url
-
-なぜ、Modelはurlでは無いのか？ソースを読んでみませう。
-
-
-## crudを再確認
-
-### Model
-
-- create
-    - (POST) /api/posts
-- save
-    - (PUT) /api/posts
-- destroy
-    - (DELETE) /api/posts
-- fetch
-    - (FETCH) /api/posts
-
-### Collection
-
-## 自作sync
-
-
-
-# storage
+https://docs.google.com/presentation/d/1CwrL6j1ONEauVZxHf9SY5g57lbHMTfF5JxRby5mQVo4/edit?usp=sharing
 
 
