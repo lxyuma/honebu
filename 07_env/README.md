@@ -1,4 +1,3 @@
 # js環境
 
-- slide
-  - 上のhonebu-env.htmlをdl
+- http://s3-ap-northeast-1.amazonaws.com/s3-jikken/honebu_env.html#1
